@@ -1,6 +1,6 @@
 package com.grupoacert.conversor.model;
 
-import com.grupoacert.conversor.dto.Resultado;
+import com.grupoacert.conversor.dto.ResultadoDTO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +19,9 @@ public class Historico {
     private String converterPara;
     private Date dataConsulta;
 
-    public Historico(Resultado resultado, String converterPara) {
-        this.celsius = resultado.getCelsius();
-        this.fahrenheit = resultado.getFahrenheit();
+    public Historico(ResultadoDTO resultadoDTO, String converterPara) {
+        this.celsius = resultadoDTO.getCelsius();
+        this.fahrenheit = resultadoDTO.getFahrenheit();
         this.dataConsulta = new Date();
         this.converterPara = converterPara;
     }

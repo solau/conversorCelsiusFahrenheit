@@ -1,8 +1,8 @@
-package com.grupoacert.conversor.form;
+package com.grupoacert.conversor.dto;
 
 import com.grupoacert.conversor.Enum.EscalaEnum;
 
-public class GrausForm {
+public class GrausDTO {
 
     private Double grau;
     private EscalaEnum converterPara;

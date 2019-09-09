@@ -1,9 +1,9 @@
 package com.grupoacert.conversor.controller;
 
 import com.grupoacert.conversor.Enum.EscalaEnum;
-import com.grupoacert.conversor.dto.Resultado;
-import com.grupoacert.conversor.form.GrausForm;
-import com.grupoacert.conversor.service.ConversorService;
+import com.grupoacert.conversor.dto.ResultadoDTO;
+import com.grupoacert.conversor.dto.GrausDTO;
+import com.grupoacert.conversor.service.impl.ConversorServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import static com.grupoacert.conversor.controller.utils.TestUtils.asJsonString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -29,21 +30,21 @@ public class ConversorGrausControllerTests {
     private MockMvc mockMvc;
 
     @MockBean
-    private ConversorService conversorService;
+    private ConversorServiceImpl conversorService;
 
     @Test
     public void verificarEndPointConversao() throws Exception {
-        Resultado resultado = new Resultado(20D,68D);
+        ResultadoDTO resultadoDTO = new ResultadoDTO(20D,68D);
 
-        when(conversorService.converter(any(GrausForm.class)))
-                .thenReturn(resultado);
+        when(conversorService.converter(any(GrausDTO.class)))
+                .thenReturn(resultadoDTO);
 
 
-        GrausForm grausForm = new GrausForm();
-        grausForm.setConverterPara(EscalaEnum.FAHRENHEIT);
-        grausForm.setGrau(20D);
-        MockHttpServletRequestBuilder request = get("/conversor_graus").
-        content(asJsonString(grausForm))
+        GrausDTO grausDTO = new GrausDTO();
+        grausDTO.setConverterPara(EscalaEnum.FAHRENHEIT);
+        grausDTO.setGrau(20D);
+        MockHttpServletRequestBuilder request = post("/conversor/graus").
+        content(asJsonString(grausDTO))
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8);
 

@@ -1,22 +1,22 @@
 package com.grupoacert.conversor.controller;
 
-import com.grupoacert.conversor.dto.Resultado;
-import com.grupoacert.conversor.form.GrausForm;
-import com.grupoacert.conversor.service.ConversorService;
+import com.grupoacert.conversor.dto.ResultadoDTO;
+import com.grupoacert.conversor.dto.GrausDTO;
+import com.grupoacert.conversor.service.impl.ConversorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/conversor_graus")
+@RequestMapping("/conversor/graus")
 public class ConversorGrausController {
 
     @Autowired
-    ConversorService conversorService;
+    ConversorServiceImpl conversorService;
 
 
-    @GetMapping
-    public ResponseEntity<Resultado> conversor(@RequestBody GrausForm grausForm) {
-        return ResponseEntity.ok(conversorService.converter(grausForm));
+    @PostMapping
+    public ResponseEntity<ResultadoDTO> conversor(@RequestBody GrausDTO grausDTO) {
+        return ResponseEntity.ok(conversorService.converter(grausDTO));
     }
 }

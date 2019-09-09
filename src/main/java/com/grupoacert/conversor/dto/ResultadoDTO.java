@@ -1,11 +1,11 @@
 package com.grupoacert.conversor.dto;
 
-public class Resultado {
+public class ResultadoDTO {
 
     private Double celsius;
     private Double fahrenheit;
 
-    public Resultado(Double celsius, Double fahrenheit) {
+    public ResultadoDTO(Double celsius, Double fahrenheit) {
         this.celsius = celsius;
         this.fahrenheit = fahrenheit;
     }
